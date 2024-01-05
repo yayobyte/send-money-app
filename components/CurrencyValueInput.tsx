@@ -3,13 +3,9 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-  Platform,
-  Modal,
-  TouchableHighlight,
-  ScrollView
 } from "react-native";
 import { CurrencyInput } from "./ui";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { theme } from "../config/ThemeContext";
 import CountryFlag from "react-native-country-flag";
 import { Ionicons } from "@expo/vector-icons";

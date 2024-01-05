@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet } from "react-native";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import { CurrencyValueInput } from "./CurrencyValueInput";
 import { theme } from "../config/ThemeContext";
@@ -20,6 +20,11 @@ export const CurrencyExchangeBlock = () => {
     setExchangeRatePair(currency)
     setExchangeRateValue(value)
   }
+  
+  useEffect(() => {
+    const newRateAmount = (parseFloat(valueFrom) * exchangeRateValue).toFixed(2).toString() || '0'
+    setValueTo(newRateAmount)
+  }, [valueFrom, exchangeRatePair, exchangeRateValue]);
   
   return (
     <View style={styles.container}>

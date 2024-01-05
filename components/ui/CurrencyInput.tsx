@@ -8,9 +8,28 @@ type CurrencyInputProps = {
 }
 
 export const CurrencyInput = ({ value, onChangeText }: CurrencyInputProps) => {
+  const onHandleChange = (value: string) => {
+    const sanitizedValue = value.replace(/^0+/, '');
+    if (sanitizedValue === '' || (sanitizedValue.length === 1 && sanitizedValue[0] === '0')) {
+      onChangeText('0');
+      return;
+    }
+    
+    const numericValue = parseFloat(sanitizedValue);
+    if (isNaN(numericValue)) {
+      return;
+    }
+    
+    if (numericValue < 0) {
+      return;
+    }
+    
+    onChangeText(sanitizedValue);
+    
+  }
   return (
     <View style={styles.container}>
-      <TextInput onChangeText={onChangeText} value={value} style={styles.input} />
+      <TextInput onChangeText={onHandleChange} value={value} style={styles.input} />
     </View>
   )
 }
