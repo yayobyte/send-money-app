@@ -22,7 +22,7 @@ export const theme = {
     primary: '#6653ff',
     secondary: '#697592',
     highlight: '#ecf2f5',
-    lightText: '#838383',
+    lightText: '#586585',
   }
 }
 

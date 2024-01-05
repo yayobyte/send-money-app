@@ -19,8 +19,10 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   input: {
     fontSize: theme.fontSize.header,
+    fontWeight: "500",
   }
 })
