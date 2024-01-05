@@ -11,16 +11,36 @@ export const CurrencyExchangeBlock = () => {
   const [exchangeRatePair, setExchangeRatePair] = useState('AEDCOP')
   const [exchangeRateValue, setExchangeRateValue] = useState(1069.811372)
   
-  const currencyFrom = exchangeRatePair.slice(0,3)
-  const countryFrom = exchangeRatePair.slice(0,2)
-  const currencyTo = exchangeRatePair.slice(3,6)
-  const countryTo = exchangeRatePair.slice(3,5)
+  const currencyFrom = exchangeRatePair.slice(0, 3)
+  const countryFrom = exchangeRatePair.slice(0, 2)
+  const currencyTo = exchangeRatePair.slice(3, 6)
+  const countryTo = exchangeRatePair.slice(3, 5)
+  
+  const onChangeCurrency = (currency: string, value: number) => {
+    setExchangeRatePair(currency)
+    setExchangeRateValue(value)
+  }
   
   return (
     <View style={styles.container}>
-      <CurrencyValueInput onChangeText={setValueFrom} value={valueFrom} text={'You send exactly'} currency={currencyFrom} countryIso={countryFrom} />
-      <ExchangeRateFees value={exchangeRateValue} from={currencyFrom} to={currencyTo} />
-      <CurrencyValueInput onChangeText={setValueTo} value={valueTo} text={'Recipient gets'} currency={currencyTo} countryIso={countryTo}/>
+      <CurrencyValueInput
+        onChangeText={setValueFrom}
+        value={valueFrom}
+        text={'You send exactly'}
+        currency={currencyFrom}
+        countryIso={countryFrom}
+        touchable={false}
+      />
+      <ExchangeRateFees value={parseFloat(exchangeRateValue.toFixed(2))} from={currencyFrom} to={currencyTo}/>
+      <CurrencyValueInput
+        onChangeText={setValueTo}
+        onChangeCurrency={onChangeCurrency}
+        value={valueTo}
+        text={'Recipient gets'}
+        currency={currencyTo}
+        countryIso={countryTo}
+        touchable={true}
+      />
     </View>
   )
 }
