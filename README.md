@@ -8,7 +8,7 @@ This is a mobile application built with Expo. The app uses `Yarn workspaces` to 
 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
-- [Running the Project](#runningtheproject)
+- [Running the Project](#running-the-project)
 - [Test](#test)
 
 ## Prerequisites
