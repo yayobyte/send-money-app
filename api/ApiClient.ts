@@ -14,8 +14,7 @@ class ApiClient {
         },
       });
       
-      const data: T = await response.json();
-      return data;
+      return await response.json();
     } catch (error) {
       console.error('Error during GET request:', error);
       throw error;
@@ -28,13 +27,11 @@ class ApiClient {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          // Add any other headers as needed
         },
         body: JSON.stringify(body),
       });
       
-      const data: T = await response.json();
-      return data;
+      return await response.json();
     } catch (error) {
       console.error('Error during POST request:', error);
       throw error;

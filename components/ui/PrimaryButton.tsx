@@ -1,4 +1,5 @@
 import { Text, TouchableOpacity, StyleSheet } from "react-native";
+import { theme } from '../../config/ThemeContext';
 
 export const PrimaryButton = ({ onPressStartTransfer }) => {
   return (
@@ -10,16 +11,16 @@ export const PrimaryButton = ({ onPressStartTransfer }) => {
 
 const styles = StyleSheet.create({
   button: {
-    paddingHorizontal: 8 * 12,
-    paddingVertical: 8 * 3,
-    borderRadius: 8 * 3,
-    marginVertical: 8 * 2,
-    marginHorizontal: 8 * 2,
-    backgroundColor: '#2f80ed',
+    alignContent: 'stretch',
+    paddingHorizontal: theme.spacing.xxl * 3,
+    paddingVertical: theme.spacing.xl,
+    borderRadius: theme.spacing.xl,
+    marginVertical: theme.spacing.md,
+    backgroundColor: theme.colors.primary,
   },
   buttonText: {
-    color: 'white',
-    fontSize: 8 * 2,
+    color: theme.colors.background,
+    fontSize: theme.fontSize.regular,
     fontWeight: 'bold',
   }
 })

@@ -1,9 +1,9 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { StyleSheet, View } from "react-native";
-import { CurrencyExchangeBlock } from "../components/CurrencyExchangeBlock";
-import { ProcessingTimeInfo } from "../components/ProcessingTimeInfo";
-import { PrimaryButton } from "../components/PrimaryButton";
+import { CurrencyExchangeBlock, ProcessingTimeInfo } from "../components";
+import { PrimaryButton } from "../components/ui";
 import { StatusBar } from "expo-status-bar";
+import { theme } from "../config/ThemeContext";
 
 export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
@@ -12,8 +12,10 @@ export const HomeScreen = () => {
   }
   return (
     <View style={[{ paddingTop: insets.top }, styles.container]}>
-      <CurrencyExchangeBlock />
-      <ProcessingTimeInfo />
+      <View>
+        <CurrencyExchangeBlock />
+        <ProcessingTimeInfo />
+      </View>
       <PrimaryButton onPressStartTransfer={onPressStartTransfer}/>
       <StatusBar style="auto"/>
     </View>
@@ -26,6 +28,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: 16,
+    paddingVertical: theme.spacing.lg,
   },
 });
