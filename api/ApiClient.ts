@@ -5,9 +5,9 @@ class ApiClient {
     this.baseUrl = baseUrl;
   }
   
-  async get<T>(endpoint: string): Promise<T> {
+  async get<T>(endpoint: string, urlParams: string | null): Promise<T> {
     try {
-      const response = await fetch(`${this.baseUrl}/${endpoint}`, {
+      const response = await fetch(`${this.baseUrl}/${endpoint}${urlParams ? `?${urlParams}` : ''}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',

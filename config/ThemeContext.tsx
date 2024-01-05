@@ -1,6 +1,4 @@
-import { createContext } from 'react';
-
-export const ThemeContext = createContext({});
+import React, { createContext } from 'react';
 
 const spacingUnit = 8
 
@@ -14,7 +12,9 @@ export const theme = {
   },
   fontSize: {
     sm: spacingUnit,
+    md: spacingUnit * 1.5,
     regular: spacingUnit * 2,
+    lg: spacingUnit * 3,
     header: spacingUnit * 4,
   },
   colors: {
@@ -26,7 +26,9 @@ export const theme = {
   }
 }
 
-export const ThemeProvider = ({ children }) => {
+export const ThemeContext = createContext({theme});
+
+export const ThemeProvider = ({ children }: { children : React.ReactNode }) => {
   return (
     <ThemeContext.Provider value={{ theme }}>
       {children}

@@ -1,12 +1,20 @@
 import ApiClient from './ApiClient';
+import { ConvertRequest, ConvertResult } from "./types/convert";
+import { RatesResult } from "./types/rates";
 
 const apiUrl = 'http://localhost';
 const apiPort = 3001
-const apiClient = new ApiClient(`${apiUrl}:${apiPort}`);
 
 const ApiService = {
-  get: <T>(endpoint: string) => apiClient.get<T>(endpoint),
-  post: <T>(endpoint: string, body: object) => apiClient.post<T>(endpoint, body),
+  convert: (query: ConvertRequest) => {
+    const apiClient = new ApiClient(`${apiUrl}:${apiPort}`);
+    const urlParams = new URLSearchParams(query as unknown as URLSearchParams).toString() || null
+    return apiClient.get<ConvertResult>('convert', urlParams)
+  },
+  rates: () => {
+    const apiClient = new ApiClient(`${apiUrl}:${apiPort}`);
+    return apiClient.get<RatesResult>('rates', null)
+  }
 };
 
 export default ApiService;
