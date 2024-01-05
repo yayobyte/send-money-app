@@ -2,11 +2,13 @@
   "name": "send-money-app",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
+  "workspaces": ["packages/*"],
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "server": "nodemon packages/server/server.js"
   },
   "dependencies": {
     "expo": "~49.0.15",
