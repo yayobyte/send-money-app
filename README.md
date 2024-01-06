@@ -9,6 +9,7 @@ This is a mobile application built with Expo. The app uses `Yarn workspaces` to 
 - [Prerequisites](#prerequisites)
 - [Installation](#installation)
 - [Running the Project](#running-the-project)
+- [Troubleshoot](#troubleshoot)
 - [Test](#test)
 
 ## Prerequisites
@@ -47,6 +48,16 @@ yarn run server
 In another console, start the development server
 ```bash
 npx expo start 
+```
+
+## Troubleshoot
+1. If you face issues connecting to your localhost server:
+```bash
+Error during GET request: [TypeError: Network request failed]
+```
+try changing `http://localhost` for the current ip given by your local router i.e. `http://192.168.1.3`. The configuration is located in the file:
+```bash
+api/ApiService.ts
 ```
 
 ## Test

@@ -10,6 +10,8 @@ import { useQuery } from "react-query";
 import ApiService from "../api/ApiService";
 import { Loader } from "./ui";
 
+const MODAL_SIZE = 280
+
 export const CurrencyExchangeBlock = () => {
   const refRBSheet = useRef();
   
@@ -39,7 +41,6 @@ export const CurrencyExchangeBlock = () => {
     setExchangeRateValue(value)
     hideModal()
   }
-  
   return (
     <View style={styles.container}>
       {isLoading ? (
@@ -53,6 +54,7 @@ export const CurrencyExchangeBlock = () => {
             currency={currencyFrom}
             countryIso={countryFrom}
             touchable={false}
+            editable={true}
           />
           <ExchangeRateFees value={parseFloat(exchangeRateValue.toFixed(2))} from={currencyFrom} to={currencyTo}/>
           <CurrencyValueInput
@@ -62,6 +64,7 @@ export const CurrencyExchangeBlock = () => {
             currency={currencyTo}
             countryIso={countryTo}
             touchable={true}
+            editable={false}
             refRBSheet={refRBSheet}
           />
         </View>
@@ -73,7 +76,7 @@ export const CurrencyExchangeBlock = () => {
         closeOnDragDown={true}
         closeOnPressMask={true}
         dragFromTopOnly={true}
-        height={300}
+        height={MODAL_SIZE}
       >
         <CurrencyPairList onSelect={onSelect} data={data?.quotes ?? {}}/>
       </RBSheet>

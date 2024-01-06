@@ -17,7 +17,7 @@ export const PrimaryButton = ({ onPressStartTransfer }: PrimaryButtonProps) => {
 const styles = StyleSheet.create({
   button: {
     alignContent: 'stretch',
-    paddingHorizontal: theme.spacing.xxl * 3,
+    paddingHorizontal: theme.spacing.xxl,
     paddingVertical: theme.spacing.xl,
     marginHorizontal: theme.spacing.lg,
     marginVertical: theme.spacing.md,

@@ -15,6 +15,7 @@ export const theme = {
     md: spacingUnit * 1.5,
     regular: spacingUnit * 2,
     lg: spacingUnit * 3,
+    xl: spacingUnit * 3.5,
     header: spacingUnit * 4,
   },
   colors: {

@@ -11,6 +11,7 @@ import CountryFlag from "react-native-country-flag";
 import { Ionicons } from "@expo/vector-icons";
 import RBSheet from 'react-native-raw-bottom-sheet'
 import { CurrencyPairList } from "./CurrencyPairList";
+import FormattedInput from "./ui/FormattedInput";
 
 type CurrencyAndValueSelectorProps = {
   value: string
@@ -20,11 +21,12 @@ type CurrencyAndValueSelectorProps = {
   countryIso: string
   touchable: boolean
   refRBSheet?: React.Ref<any>
+  editable: boolean
 }
 
 const FLAG_SIZE = 20
 
-export const CurrencyValueInput = ({ value, onChangeText, text, currency, touchable, countryIso = '', refRBSheet }: CurrencyAndValueSelectorProps) => {
+export const CurrencyValueInput = ({ value, onChangeText, text, currency, touchable, countryIso = '', refRBSheet, editable }: CurrencyAndValueSelectorProps) => {
   
   const showModal = () => {
     refRBSheet?.current.open()
@@ -43,7 +45,7 @@ export const CurrencyValueInput = ({ value, onChangeText, text, currency, toucha
         </View>
       </TouchableOpacity>
       <View style={styles.inputContainer}>
-        <CurrencyInput onChangeText={onChangeText} value={value} />
+        <FormattedInput onChangeText={onChangeText} value={value} editable={editable} />
       </View>
     </View>
   )
@@ -62,7 +64,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: theme.colors.primary,
     backgroundColor: theme.colors.primary,
-    width: theme.spacing.sm * 34,
+    width: theme.spacing.sm * 33,
     padding: theme.spacing.lg,
     alignItems: 'flex-start',
     justifyContent: 'space-between',
@@ -87,6 +89,8 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flex: 1,
-    padding: theme.spacing.lg,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
 })
