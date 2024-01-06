@@ -4,12 +4,13 @@ import { PassThrough } from 'node:stream'
 import moment from 'moment'
 import chalk from 'chalk'
 import { readFile } from 'fs/promises';
-
+import cors from 'cors'
 
 import { PORT, source, endpoint, accessKey } from './config.js'
 
 const app = express();
 app.disable('x-powered-by');
+app.use(cors())
 
 const processStream = (res, response) => {
 
@@ -42,6 +43,19 @@ app.get(`/rates`, async (req, res) => {
         processStream(res, response)
     } catch(e) {
         console.log(e)
+        console.log(chalk.yellow('Currency Layer (http://currencylayer.com) server not reachable, defaulting to mock data rates'))
+        const json = JSON.parse(
+            await readFile(
+                new URL('./rates.json', import.meta.url)
+            )
+        );
+        res.setHeader('Content-Type', 'application/json')
+        res.json({
+            success: 'true',
+            timestamp: new Date(),
+            source: 'mock data',
+            quotes: json,
+        })
     }
 })
 

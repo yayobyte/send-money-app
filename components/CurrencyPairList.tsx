@@ -1,52 +1,45 @@
 import React, { useState } from "react";
 import { ScrollView, Text, TouchableHighlight, View, StyleSheet } from "react-native";
 import { theme } from "../config/ThemeContext";
-import { useQuery } from "react-query";
-import ApiService from "../api/ApiService";
-import { Loader } from "./ui";
 import CountryFlag from "react-native-country-flag";
+import { RatesResult } from "../api/types/rates";
 
 type CurrencyPairListProps = {
   onSelect: (currency: string, value: number) => void
+  data: RatesResult["quotes"]
 }
 
-export const CurrencyPairList = ({ onSelect }: CurrencyPairListProps) => {
+export const CurrencyPairList = ({ onSelect, data }: CurrencyPairListProps) => {
   const [selectedCurrency, setSelectedCurrency] = useState('');
-  
-  const { isLoading, data } = useQuery('rates', async () => await ApiService.rates())
   
   const handleCurrencySelect = (currency: string) => {
     setSelectedCurrency(currency);
-    onSelect(currency, data?.quotes[currency] ?? 0);
+    onSelect(currency, data[currency] ?? 0);
   };
   
-  const currencies = Object.keys(data?.quotes ?? {})
+  const currencies = Object.keys(data ?? {})
   
   return (
     <View style={styles.container}>
-      {isLoading ? (
-        <Loader />
-        ) : (
-        <ScrollView>
-          {currencies.map((currency, index) => (
-            <TouchableHighlight
-              key={`${currency}_${index}`}
-              onPress={() => handleCurrencySelect(currency)}
-              underlayColor="#DDDDDD"
+      <ScrollView>
+        {currencies.map((currency, index) => (
+          <TouchableHighlight
+            key={`${currency}_${index}`}
+            onPress={() => handleCurrencySelect(currency)}
+            underlayColor="#DDDDDD"
+          >
+            <View
+              style={[
+                styles.currencyItem,
+                { backgroundColor: selectedCurrency === currency ? theme.colors.highlight : theme.colors.background },
+              ]}
             >
-              <View
-                style={[
-                  styles.currencyItem,
-                  { backgroundColor: selectedCurrency === currency ? theme.colors.highlight : theme.colors.background },
-                ]}
-              >
-                <CountryFlag isoCode={currency.slice(3,5)} size={theme.spacing.lg} />
-                <Text style={styles.currencyText}>{currency.slice(3,6)}</Text>
-              </View>
-            </TouchableHighlight>
-          ))}
-        </ScrollView>
-      )}
+              <CountryFlag isoCode={currency.slice(3,5)} size={theme.spacing.lg} />
+              <Text style={styles.currencyText}>{currency.slice(3,6)}</Text>
+            </View>
+          </TouchableHighlight>
+        ))}
+      </ScrollView>
     </View>
   );
 };

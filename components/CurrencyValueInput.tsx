@@ -15,30 +15,20 @@ import { CurrencyPairList } from "./CurrencyPairList";
 type CurrencyAndValueSelectorProps = {
   value: string
   onChangeText: React.Dispatch<React.SetStateAction<string>>
-  onChangeCurrency?: (currency: string, value: number) => void
   text: string
   currency: string
   countryIso: string
   touchable: boolean
+  refRBSheet?: React.Ref<any>
 }
 
 const FLAG_SIZE = 20
 
-export const CurrencyValueInput = ({ value, onChangeText, onChangeCurrency, text, currency, touchable, countryIso = '' }: CurrencyAndValueSelectorProps) => {
-  const refRBSheet = useRef();
+export const CurrencyValueInput = ({ value, onChangeText, text, currency, touchable, countryIso = '', refRBSheet }: CurrencyAndValueSelectorProps) => {
   
   const showModal = () => {
-    refRBSheet.current.open()
+    refRBSheet?.current.open()
   };
-  
-  const hideModal = () => {
-    refRBSheet.current.close()
-  };
-  
-  const onSelect = (currency: string, value: number) => {
-    onChangeCurrency && onChangeCurrency(currency, value)
-    hideModal()
-  }
   
   return (
     <View style={styles.container}>
@@ -55,21 +45,9 @@ export const CurrencyValueInput = ({ value, onChangeText, onChangeCurrency, text
       <View style={styles.inputContainer}>
         <CurrencyInput onChangeText={onChangeText} value={value} />
       </View>
-      <RBSheet
-        ref={refRBSheet}
-        animationType={'fade'}
-        closeOnDragDown={true}
-        closeOnPressMask={true}
-        dragFromTopOnly={true}
-        height={300}
-      >
-        <CurrencyPairList onSelect={onSelect}/>
-      </RBSheet>
     </View>
   )
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
