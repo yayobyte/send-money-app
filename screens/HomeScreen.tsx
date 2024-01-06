@@ -1,11 +1,12 @@
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { CurrencyExchangeBlock, ProcessingTimeInfo } from "../components";
 import { PrimaryButton } from "../components/ui";
 import { StatusBar } from "expo-status-bar";
 import { theme } from "../config/ThemeContext";
 import React from "react";
 
+const DEFAULT_VERTICAL_OFFSET = Platform.OS === 'ios' ? 300 : 0 // px
 
 export const HomeScreen = () => {
   const insets = useSafeAreaInsets();
@@ -14,7 +15,12 @@ export const HomeScreen = () => {
   }
   
   return (
-    <View style={[{ paddingTop: insets.top, paddingBottom: insets.bottom }, styles.container]}>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      keyboardVerticalOffset={DEFAULT_VERTICAL_OFFSET}
+      style={{ flex: 1 }}
+    >
+    <View style={[styles.container, { paddingTop: insets.top, paddingBottom: insets.bottom }]}>
       <View>
         <CurrencyExchangeBlock/>
         <ProcessingTimeInfo/>
@@ -22,6 +28,7 @@ export const HomeScreen = () => {
       <PrimaryButton onPressStartTransfer={onPressStartTransfer}/>
       <StatusBar style="auto"/>
     </View>
+    </KeyboardAvoidingView>
   )
 }
 
