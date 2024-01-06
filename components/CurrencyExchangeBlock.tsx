@@ -9,6 +9,7 @@ import RBSheet from "react-native-raw-bottom-sheet";
 import { useQuery } from "react-query";
 import ApiService from "../api/ApiService";
 import { Loader } from "./ui";
+import { DotsSection } from "./DotsSection";
 
 const MODAL_SIZE = 280
 
@@ -87,5 +88,5 @@ export const CurrencyExchangeBlock = () => {
 const styles = StyleSheet.create({
   container: {
     marginVertical: theme.spacing.xxl,
-  }
+  },
 })

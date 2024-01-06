@@ -22,8 +22,9 @@ export const theme = {
     background: '#fff',
     primary: '#6653ff',
     secondary: '#697592',
-    highlight: '#ecf2f5',
     lightText: '#586585',
+    blueLight: '#87a5c0',
+    highlight: '#ecf2f5',
   }
 }
 
