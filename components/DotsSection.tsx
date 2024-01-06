@@ -1,8 +1,8 @@
-import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { FontAwesome } from '@expo/vector-icons';
-import { useTheme } from "../hooks/useTheme";
-import { theme } from "../config/ThemeContext";
+import React from 'react'
+import { View, StyleSheet } from 'react-native'
+import { FontAwesome } from '@expo/vector-icons'
+import { useTheme } from "../hooks/useTheme"
+import { theme } from "../config/ThemeContext"
 
 type DotsSectionProps = {
   numOfDots: number
@@ -10,7 +10,7 @@ type DotsSectionProps = {
 
 export const DotsSection = ({ numOfDots }: DotsSectionProps) => {
   const { theme } = useTheme()
-  const dotsArray = Array.from({ length: numOfDots });
+  const dotsArray = Array.from({ length: numOfDots })
   
   return (
     <View style={styles.container}>
@@ -18,8 +18,8 @@ export const DotsSection = ({ numOfDots }: DotsSectionProps) => {
         <FontAwesome key={index} name="circle" size={theme.fontSize.sm / 2} style={styles.icon} color={theme.colors.blueLight} />
       ))}
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
   icon: {
     marginVertical: theme.spacing.sm / 2,
   }
-});
+})

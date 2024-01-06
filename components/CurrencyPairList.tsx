@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { ScrollView, Text, TouchableHighlight, View, StyleSheet } from "react-native";
 import { theme } from "../config/ThemeContext";
-import CountryFlag from "react-native-country-flag";
 import { RatesResult } from "../api/types/rates";
 
 type CurrencyPairListProps = {
@@ -21,6 +20,7 @@ export const CurrencyPairList = ({ onSelect, data }: CurrencyPairListProps) => {
   
   return (
     <View style={styles.container}>
+      <Text style={styles.header}>Select Currency</Text>
       <ScrollView>
         {currencies.map((currency, index) => (
           <TouchableHighlight
@@ -34,19 +34,25 @@ export const CurrencyPairList = ({ onSelect, data }: CurrencyPairListProps) => {
                 { backgroundColor: selectedCurrency === currency ? theme.colors.highlight : theme.colors.background },
               ]}
             >
-              <CountryFlag isoCode={currency.slice(3,5)} size={theme.spacing.lg} />
               <Text style={styles.currencyText}>{currency.slice(3,6)}</Text>
             </View>
           </TouchableHighlight>
         ))}
       </ScrollView>
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  header: {
+    marginHorizontal: theme.spacing.xl,
+    textAlign: 'center',
+    color: theme.colors.lightText,
+    fontSize: theme.fontSize.md,
+    paddingVertical: theme.spacing.md,
   },
   currencyItem: {
     flexDirection: 'row',
