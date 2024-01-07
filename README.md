@@ -70,9 +70,4 @@ yarn run test
 ## Docs 📚
 
 The app will look like the following video:
-<p align="center">
-    <video width="640" height="1200" controls>
-        <source src="https://raw.githubusercontent.com/yayobyte/send-money-app/main/docs/ios_simulator_iphone_14.mov" type="video/mp4">
-        Your browser does not support the video tag.
-    </video>
-</p>
+![Iphone 14 Simulator](./docs/ios_simulator_iphone_14.mov)
