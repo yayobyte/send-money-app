@@ -69,5 +69,15 @@ yarn run test
 
 ## Docs 📚
 
-The app will look like the following video:
-![Iphone 14 Simulator](./docs/ios_simulator_iphone_14.mov)
+Here is a small demo of the app. If you are not able to see this behaviour please refer to the Troubleshoot section.
+
+> The App has been tested in physical multiple devices and simulators, take a look at the following videos 
+
+### Iphone 14 Simulator
+![Video Preview](./docs/iphone_14_simulator.gif)
+
+### Iphone 12 Pro Physical Device
+![Video Preview](./docs/iphone_12_pysical_device.gif)
+
+### Android Simulator
+![Video Preview](./docs/android_simulator.gif)
