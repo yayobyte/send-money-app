@@ -35,7 +35,11 @@ export const CurrencyExchangeBlock = () => {
   
   const hideModal = () => {
     refRBSheet?.current?.close()
-  };
+  }
+  
+  const showModal = () => {
+    refRBSheet?.current.open()
+  }
   
   const onSelect = (currency: string, value: number) => {
     setExchangeRatePair(currency)
@@ -66,7 +70,7 @@ export const CurrencyExchangeBlock = () => {
             countryIso={countryTo}
             touchable={true}
             editable={false}
-            refRBSheet={refRBSheet}
+            showModal={showModal}
           />
         </View>
       )}

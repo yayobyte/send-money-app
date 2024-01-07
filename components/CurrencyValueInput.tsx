@@ -21,17 +21,13 @@ type CurrencyAndValueSelectorProps = {
   countryIso: string
   touchable: boolean
   refRBSheet?: React.Ref<any>
+  showModal?: () => void
   editable: boolean
 }
 
 const FLAG_SIZE = 20
 
-export const CurrencyValueInput = ({ value, onChangeText, text, currency, touchable, countryIso = '', refRBSheet, editable }: CurrencyAndValueSelectorProps) => {
-  
-  const showModal = () => {
-    refRBSheet?.current.open()
-  };
-  
+export const CurrencyValueInput = ({ value, onChangeText, text, currency, touchable, countryIso = '', editable, showModal }: CurrencyAndValueSelectorProps) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.currencyBlock} disabled={!touchable} onPress={showModal}>
