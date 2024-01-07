@@ -3,15 +3,12 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
-} from "react-native";
-import { CurrencyInput } from "./ui";
-import React, { useRef } from "react";
-import { theme } from "../config/ThemeContext";
-import CountryFlag from "react-native-country-flag";
-import { Ionicons } from "@expo/vector-icons";
-import RBSheet from 'react-native-raw-bottom-sheet'
-import { CurrencyPairList } from "./CurrencyPairList";
-import FormattedInput from "./ui/FormattedInput";
+} from "react-native"
+import React from "react"
+import { theme } from "../config/ThemeContext"
+import CountryFlag from "react-native-country-flag"
+import { Ionicons } from "@expo/vector-icons"
+import FormattedInput from "./ui/FormattedInput"
 
 type CurrencyAndValueSelectorProps = {
   value: string

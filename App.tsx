@@ -1,8 +1,8 @@
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { HomeScreen } from "./screens/HomeScreen";
-import { ThemeProvider } from "./config/ThemeContext";
+import { SafeAreaProvider } from 'react-native-safe-area-context'
+import { HomeScreen } from "./screens/HomeScreen"
+import { ThemeProvider } from "./config/ThemeContext"
 import { QueryClient, QueryClientProvider } from 'react-query'
-import React from 'react';
+import React from 'react'
 
 const queryClient = new QueryClient()
 

@@ -1,6 +1,6 @@
-import { ActivityIndicator, StyleSheet, View } from "react-native";
-import React from "react";
-import { theme } from "../../config/ThemeContext";
+import { ActivityIndicator, StyleSheet, View } from "react-native"
+import React from "react"
+import { theme } from "../../config/ThemeContext"
 
 export const Loader = () => {
   return (

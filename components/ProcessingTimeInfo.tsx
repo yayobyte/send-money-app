@@ -1,7 +1,7 @@
-import React from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { FontAwesome5 } from '@expo/vector-icons';
-import { theme } from "../config/ThemeContext";
+import React from "react"
+import { View, Text, StyleSheet } from "react-native"
+import { FontAwesome5 } from '@expo/vector-icons'
+import { theme } from "../config/ThemeContext"
 
 export const ProcessingTimeInfo = () => {
   return (

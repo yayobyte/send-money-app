@@ -1,20 +1,19 @@
-import { View, StyleSheet } from "react-native";
-import { useEffect, useRef, useState } from "react";
-import React from "react";
-import { CurrencyValueInput } from "./CurrencyValueInput";
-import { theme } from "../config/ThemeContext";
-import { ExchangeRateFees } from "./ExchangeRateFees";
-import { CurrencyPairList } from "./CurrencyPairList";
-import RBSheet from "react-native-raw-bottom-sheet";
-import { useQuery } from "react-query";
-import ApiService from "../api/ApiService";
-import { Loader } from "./ui";
-import { DotsSection } from "./DotsSection";
+import { View, StyleSheet } from "react-native"
+import { useEffect, useRef, useState } from "react"
+import React from "react"
+import { CurrencyValueInput } from "./CurrencyValueInput"
+import { theme } from "../config/ThemeContext"
+import { ExchangeRateFees } from "./ExchangeRateFees"
+import { CurrencyPairList } from "./CurrencyPairList"
+import RBSheet from "react-native-raw-bottom-sheet"
+import { useQuery } from "react-query"
+import ApiService from "../api/ApiService"
+import { Loader } from "./ui"
 
 const MODAL_SIZE = 280
 
 export const CurrencyExchangeBlock = () => {
-  const refRBSheet = useRef();
+  const refRBSheet = useRef()
   
   const { isLoading, data } = useQuery('rates', async () => await ApiService.rates())
   
@@ -31,7 +30,7 @@ export const CurrencyExchangeBlock = () => {
   useEffect(() => {
     const newRateAmount = (parseFloat(valueFrom) * exchangeRateValue).toFixed(2).toString() || '0'
     setValueTo(newRateAmount)
-  }, [valueFrom, exchangeRatePair, exchangeRateValue]);
+  }, [valueFrom, exchangeRatePair, exchangeRateValue])
   
   const hideModal = () => {
     refRBSheet?.current?.close()

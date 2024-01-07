@@ -1,6 +1,6 @@
-import { Text, TouchableOpacity, StyleSheet } from "react-native";
-import { theme } from '../../config/ThemeContext';
-import React from "react";
+import { Text, TouchableOpacity, StyleSheet } from "react-native"
+import { theme } from '../../config/ThemeContext'
+import React from "react"
 
 type PrimaryButtonProps = {
   onPressStartTransfer: () => void

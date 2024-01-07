@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react"
 import { Text, View, StyleSheet, LayoutAnimation, UIManager, Platform, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
 import { theme } from "../config/ThemeContext"
-import { DotsSection } from "./DotsSection";
+import { DotsSection } from "./DotsSection"
 
 type ExchangeRateFeesProps = {
   value: number
   from: string
   to: string
-};
+}
 
 // Enable LayoutAnimation on Android
 if (Platform.OS === "android" && UIManager.setLayoutAnimationEnabledExperimental) {
@@ -27,7 +27,7 @@ export const ExchangeRateFees = ({ from, to, value }: ExchangeRateFeesProps) => 
   
   const toggleAccordion = () => {
     setIsAccordionOpen(!isAccordionOpen)
-  };
+  }
   
   return (
     <View style={styles.separator}>

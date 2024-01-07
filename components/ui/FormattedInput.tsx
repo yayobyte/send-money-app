@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { TextInput, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { theme } from "../../config/ThemeContext";
-import { REGEXP_ONLY_TWO_DECIMALS, validateTwoDecimalNumber } from "../../utils/numbers";
+import React, { useState, useRef, useEffect } from 'react'
+import { TextInput, View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { theme } from "../../config/ThemeContext"
+import { REGEXP_ONLY_TWO_DECIMALS, validateTwoDecimalNumber } from "../../utils/numbers"
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 type FormattedInputProps = {
   value: string
@@ -10,7 +11,7 @@ type FormattedInputProps = {
 }
 
 const FormattedInput = ({ value, onChangeText, editable }: FormattedInputProps) => {
-  const textInputRef = useRef(null);
+  const textInputRef = useRef(null)
   const [integerPart, setIntegerPart] = useState('0')
   const [decimalPart, setDecimalPart] = useState('00')
   
@@ -39,7 +40,7 @@ const FormattedInput = ({ value, onChangeText, editable }: FormattedInputProps) 
     // Allow only two decimals
     const match = sanitizedValue.match(REGEXP_ONLY_TWO_DECIMALS)
     if (!match) {
-      return ;
+      return
     }
     
     updateTextFields(sanitizedValue)
@@ -47,14 +48,14 @@ const FormattedInput = ({ value, onChangeText, editable }: FormattedInputProps) 
   
   const openKeyboard = () => {
     if (textInputRef.current) {
-      textInputRef.current.focus();
+      textInputRef.current.focus()
       editable && reset()
     }
   }
   
   useEffect(() => {
     updateTextFields(value)
-  }, [value]);
+  }, [value])
   
   return (
     <TouchableOpacity style={styles.container} onPress={openKeyboard} disabled={!editable}>
@@ -74,8 +75,8 @@ const FormattedInput = ({ value, onChangeText, editable }: FormattedInputProps) 
         </View>
       </View>
     </TouchableOpacity>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -113,6 +114,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: theme.colors.lightText,
   },
-});
+})
 
-export default FormattedInput;
+export default FormattedInput

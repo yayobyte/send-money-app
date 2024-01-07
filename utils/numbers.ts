@@ -12,7 +12,7 @@ export const validateTwoDecimalNumber = (value: string) => {
     return ''
   }
   
-  const numericValue = parseFloat(sanitizedValue);
+  const numericValue = parseFloat(sanitizedValue)
   if (isNaN(numericValue)) {
     return ''
   }

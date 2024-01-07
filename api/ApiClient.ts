@@ -1,8 +1,8 @@
 class ApiClient {
-  private baseUrl: string;
+  private baseUrl: string
   
   constructor(baseUrl: string) {
-    this.baseUrl = baseUrl;
+    this.baseUrl = baseUrl
   }
   
   async get<T>(endpoint: string, urlParams: string | null): Promise<T> {
@@ -12,12 +12,12 @@ class ApiClient {
         headers: {
           'Content-Type': 'application/json',
         },
-      });
+      })
       
-      return await response.json();
+      return await response.json()
     } catch (error) {
-      console.error('Error during GET request:', error);
-      throw error;
+      console.error('Error during GET request:', error)
+      throw error
     }
   }
   
@@ -29,14 +29,14 @@ class ApiClient {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(body),
-      });
+      })
       
-      return await response.json();
+      return await response.json()
     } catch (error) {
-      console.error('Error during POST request:', error);
-      throw error;
+      console.error('Error during POST request:', error)
+      throw error
     }
   }
 }
 
-export default ApiClient;
+export default ApiClient

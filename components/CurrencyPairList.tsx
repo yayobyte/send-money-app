@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { ScrollView, Text, TouchableHighlight, View, StyleSheet } from "react-native";
-import { theme } from "../config/ThemeContext";
-import { RatesResult } from "../api/types/rates";
+import React, { useState } from "react"
+import { ScrollView, Text, TouchableHighlight, View, StyleSheet } from "react-native"
+import { theme } from "../config/ThemeContext"
+import { RatesResult } from "../api/types/rates"
 
 type CurrencyPairListProps = {
   onSelect: (currency: string, value: number) => void
@@ -9,12 +9,12 @@ type CurrencyPairListProps = {
 }
 
 export const CurrencyPairList = ({ onSelect, data }: CurrencyPairListProps) => {
-  const [selectedCurrency, setSelectedCurrency] = useState('');
+  const [selectedCurrency, setSelectedCurrency] = useState('')
   
   const handleCurrencySelect = (currency: string) => {
-    setSelectedCurrency(currency);
-    onSelect(currency, data[currency] ?? 0);
-  };
+    setSelectedCurrency(currency)
+    onSelect(currency, data[currency] ?? 0)
+  }
   
   const currencies = Object.keys(data ?? {})
   
@@ -66,4 +66,4 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginHorizontal: theme.spacing.lg,
   },
-});
+})
