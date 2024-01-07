@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react"
 import { Text, View, StyleSheet, LayoutAnimation, UIManager, Platform, Pressable } from "react-native"
 import { Ionicons } from "@expo/vector-icons"
-import { theme } from "../config/ThemeContext"
-import { DotsSection } from "./DotsSection"
+import { theme } from "../../config/ThemeContext"
+import { DotsSection } from "../DotsSection/DotsSection.view"
+import { styles } from "./ExchangeRatesFees.styles";
+import { useExchangeRatesFeesContainer } from "./ExchangeRatesFees.container";
 
 type ExchangeRateFeesProps = {
   value: number
@@ -19,15 +21,7 @@ const NUM_OF_DOTS_OPEN = 11
 const NUM_OF_DOTS_CLOSED = 8
 
 export const ExchangeRateFees = ({ from, to, value }: ExchangeRateFeesProps) => {
-  const [isAccordionOpen, setIsAccordionOpen] = useState(false)
-  
-  useEffect(() => {
-    LayoutAnimation.easeInEaseOut()
-  }, [isAccordionOpen])
-  
-  const toggleAccordion = () => {
-    setIsAccordionOpen(!isAccordionOpen)
-  }
+  const { isAccordionOpen, toggleAccordion } = useExchangeRatesFeesContainer()
   
   return (
     <View style={styles.separator}>
@@ -62,51 +56,3 @@ export const ExchangeRateFees = ({ from, to, value }: ExchangeRateFeesProps) => 
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  separator: {
-    flexDirection: 'row',
-  },
-  container: {
-    flexDirection: "column",
-    backgroundColor: theme.colors.highlight,
-    marginVertical: theme.spacing.md,
-    padding: theme.spacing.lg,
-    borderRadius: theme.spacing.md,
-    flex: 11,
-  },
-  exchangeRate: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  rate: {
-    flexDirection: "row",
-    color: theme.colors.lightText,
-    fontSize: theme.fontSize.regular,
-  },
-  icon: {
-    color: theme.colors.primary,
-  },
-  dropdown: {
-    color: theme.colors.primary,
-    fontWeight: "bold",
-  },
-  selector: {
-    flexDirection: "row",
-  },
-  additionalContent: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    marginTop: theme.spacing.sm,
-  },
-  bold: {
-    fontWeight: "bold",
-  },
-  from: {
-    fontSize: theme.fontSize.md,
-  },
-  fees: {
-    color: theme.colors.lightText,
-    fontSize: theme.fontSize.regular,
-  },
-})

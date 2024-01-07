@@ -1,8 +1,8 @@
 import { SafeAreaProvider } from 'react-native-safe-area-context'
-import { HomeScreen } from "./screens/HomeScreen"
 import { ThemeProvider } from "./config/ThemeContext"
 import { QueryClient, QueryClientProvider } from 'react-query'
 import React from 'react'
+import { HomeScreenView } from "./screens/HomeScreen/HomeScreen.view"
 
 const queryClient = new QueryClient()
 
@@ -11,7 +11,7 @@ export default function App() {
     <SafeAreaProvider>
       <ThemeProvider>
         <QueryClientProvider client={queryClient}>
-          <HomeScreen />
+          <HomeScreenView />
         </QueryClientProvider>
       </ThemeProvider>
     </SafeAreaProvider>

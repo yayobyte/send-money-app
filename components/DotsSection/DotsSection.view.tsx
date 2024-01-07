@@ -1,8 +1,8 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View } from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
-import { useTheme } from "../hooks/useTheme"
-import { theme } from "../config/ThemeContext"
+import { useTheme } from "../../hooks/useTheme"
+import { styles } from "./DotsSection.styles";
 
 type DotsSectionProps = {
   numOfDots: number
@@ -20,15 +20,3 @@ export const DotsSection = ({ numOfDots }: DotsSectionProps) => {
     </View>
   )
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: 'column',
-    alignItems: 'center',
-    overflow: 'hidden',
-  },
-  icon: {
-    marginVertical: theme.spacing.sm / 2,
-  }
-})
