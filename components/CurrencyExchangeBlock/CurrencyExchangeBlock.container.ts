@@ -23,7 +23,7 @@ export const useCurrencyExchangeBlockContainer = () => {
   
   useEffect(() => {
     const newRateAmount = getRateAmountFromValueAndExRate(valueFrom, exchangeRateValue)
-    const newExchangeRateValue = data?.quotes[INITIAL_CURRENCY_EXCHANGE_PAIR] ?? 0
+    const newExchangeRateValue = data?.quotes[exchangeRatePair] ?? 0
     setExchangeRateValue(newExchangeRateValue)
     setValueTo(newRateAmount)
   }, [valueFrom, exchangeRatePair, exchangeRateValue, data])

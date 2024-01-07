@@ -11,8 +11,9 @@ This is a mobile application built with Expo. The app uses `Yarn workspaces` to 
 - [Running the Project](#running-the-project)
 - [Troubleshoot](#troubleshoot)
 - [Test](#test)
+- [Docs](#docs)
 
-## Installation
+## Installation ⚙️
 
 Before you begin, make sure you have [Node.js](https://nodejs.org/) installed on your machine.
 
@@ -29,7 +30,7 @@ cd send-money-app
 yarn install
 ```
 
-## Prerequisites
+## Prerequisites 🪜
 Get the `accessKey` token from @yayobyte to use the `http://currencylayer.com` live server and edit the file:
 ```bash
 packages/server/config.js
@@ -39,7 +40,7 @@ otherwise the rates will be mocked using the file
 packages/server/rates.json
 ```
 
-## Running the project
+## Running the project 🏎️
 Start the server (mock or live). This command will start nodemon and will run the backend api to serve the currency exchange rates to the frontend app. By default it will create a `middleware` server in `http://localhost:3001`
 ```bash
 yarn run server
@@ -50,7 +51,7 @@ In another console, start the development server
 npx expo start 
 ```
 
-## Troubleshoot
+## Troubleshoot 📞
 1. If you face issues connecting to your localhost server:
 ```bash
 Error during GET request: [TypeError: Network request failed]
@@ -60,8 +61,18 @@ try changing `http://localhost` for the current ip given by your local router i.
 api/ApiService.ts
 ```
 
-## Test
+## Test 🎯
 1. To run `Unit` test for the business logic functions please run:
 ```bash
 yarn run test
 ```
+
+## Docs 📚
+
+The app will look like the following video:
+<p align="center">
+    <video width="640" height="1200" controls>
+        <source src="https://raw.githubusercontent.com/yayobyte/send-money-app/main/docs/ios_simulator_iphone_14.mov" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</p>
