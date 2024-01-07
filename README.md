@@ -6,21 +6,11 @@ This is a mobile application built with Expo. The app uses `Yarn workspaces` to 
 
 ## Table of Contents
 
-- [Prerequisites](#prerequisites)
 - [Installation](#installation)
+- [Prerequisites](#prerequisites)
 - [Running the Project](#running-the-project)
 - [Troubleshoot](#troubleshoot)
 - [Test](#test)
-
-## Prerequisites
-Get the `accessKey` token from @yayobyte to use the `http://currencylayer.com` live server and edit the file: 
-```bash
-packages/server/config.js
-```
-otherwise the rates will be mocked using the file
-```bash
-packages/server/rates.json
-```
 
 ## Installation
 
@@ -37,6 +27,16 @@ cd send-money-app
 
 ```bash
 yarn install
+```
+
+## Prerequisites
+Get the `accessKey` token from @yayobyte to use the `http://currencylayer.com` live server and edit the file:
+```bash
+packages/server/config.js
+```
+otherwise the rates will be mocked using the file
+```bash
+packages/server/rates.json
 ```
 
 ## Running the project
