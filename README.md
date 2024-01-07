@@ -61,3 +61,7 @@ api/ApiService.ts
 ```
 
 ## Test
+1. To run `Unit` test for the business logic functions please run:
+```bash
+yarn run test
+```

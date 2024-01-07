@@ -1,28 +1,23 @@
-import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { KeyboardAvoidingView, Platform, Text, View } from "react-native"
 import { CurrencyExchangeBlockView, ProcessingTimeInfo } from "../../components"
 import { PrimaryButton } from "../../components/ui"
 import { StatusBar } from "expo-status-bar"
 import { theme } from "../../config/ThemeContext"
-import React, { useRef } from "react"
+import React from "react"
 import RBSheet from "react-native-raw-bottom-sheet"
 import { FontAwesome5 } from '@expo/vector-icons'
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { styles } from "./HomeScreen.styles";
+import { useHomeScreenContainer } from "./HomeScreen.container";
 
 const MODAL_SIZE = 230
 
 export const HomeScreenView = () => {
-  const insets = useSafeAreaInsets()
-  const refRBSheet = useRef()
-  
-  const onPressStartTransfer = () => {
-    showModal()
-  }
-  
-  const showModal = () => {
-    refRBSheet?.current.open()
-  }
+  const {
+    insets,
+    refRBSheet,
+    onPressStartTransfer,
+  } = useHomeScreenContainer()
   
   return (
     <KeyboardAvoidingView
