@@ -61,6 +61,25 @@ try changing `http://localhost` for the current ip given by your local router i.
 api/ApiService.ts
 ```
 
+2. If you encounter issues running the ios simulator, make sure you have installed the latest version of xcode
+```bash
+› Opening on iOS...
+Error: xcrun exited with non-zero code: 2
+An error was encountered processing the command (domain=NSPOSIXErrorDomain, code=2):
+Unable to boot device because we cannot determine the runtime bundle.
+No such file or directory
+```
+
+try installing xcode-select
+```bash
+xcode-select --install
+```
+
+and then setting the correct path to Xcode
+```bash
+sudo xcode-select --switch /Applications/Xcode.app
+```
+
 ## Test 🎯
 1. To run `Unit` test for the business logic functions please run:
 ```bash
