@@ -1,4 +1,9 @@
 export const PORT = Number(process.env.PORT) || 3001;
-export const endpoint = 'http://apilayer.net/api'
-export const accessKey = '' //put the access key shared previously
+export const apiUrl = 'https://api.apilayer.com/fixer'
+export const accessKey = process.env.APILAYER_ACCESS_KEY || '' //put the access key shared previously
 export const source = 'AED'
+export const destination= 'COP'
+export const ENDPOINT = {
+    LATEST: '/latest',
+    CONVERT: '/convert'
+}

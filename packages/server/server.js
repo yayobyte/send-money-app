@@ -1,3 +1,4 @@
+import './setupEnv.js';
 import express from 'express';
 import fetch from 'node-fetch';
 import { PassThrough } from 'node:stream'
@@ -6,7 +7,7 @@ import chalk from 'chalk'
 import { readFile } from 'fs/promises';
 import cors from 'cors'
 
-import { PORT, source, endpoint, accessKey } from './config.js'
+import { PORT, source, apiUrl, accessKey, destination, ENDPOINT } from './config.js'
 
 const app = express();
 app.disable('x-powered-by');
@@ -32,13 +33,21 @@ app.get('/', (req, res) => {
 });
 
 app.get(`/rates`, async (req, res) => {
-    const url = `${endpoint}/live?access_key=${accessKey}&source=${source}&format=1`
     try {
-        const response = await fetch(url, {
+        const url = new URL(`${apiUrl}${ENDPOINT.LATEST}`);
+        const params = new URLSearchParams({
+            base: source,
+            symbols: destination
+        });
+        url.search = params.toString();
+
+        const headers = new Headers();
+        headers.append("apikey", accessKey);
+        headers.append('Content-Type', 'application/json');
+
+        const response = await fetch(url.toString(), {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers,
         })
         processStream(res, response)
     } catch(e) {
@@ -61,22 +70,33 @@ app.get(`/rates`, async (req, res) => {
 
 app.get('/convert', async(req, res) => {
     const { from, to, amount } = req.query
-    const currentDate = moment();
-    const formattedDate = currentDate.format('YYYY-MM-DD');
-    const url = `${endpoint}/convert?access_key=${accessKey}&from=${from}&to=${to}&amount=${amount}&date=${formattedDate}&format=1`
-
+    
     if (!from || !to || !amount) {
         res.status(400)
         res.send('Please send { from, to, amount } query params')
     }
 
     try {
-        const response = await fetch(url, {
+        const currentDate = moment();
+        const formattedDate = currentDate.format('YYYY-MM-DD');
+        const url = new URL(`${apiUrl}${ENDPOINT.CONVERT}`);
+        const params = new URLSearchParams({
+            from,
+            to,
+            amount,
+            date: formattedDate
+        });
+        url.search = params.toString();
+
+        const headers = new Headers();
+        headers.append("apikey", accessKey);
+        headers.append('Content-Type', 'application/json');
+
+        const response = await fetch(url.toString(), {
             method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers,
         })
+
         processStream(res, response)
     } catch(e) {
         console.log(e)
