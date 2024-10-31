@@ -3,16 +3,18 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "workspaces": [
-    "packages/*"
+    "packages/server"
   ],
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "server": "nodemon packages/server/server.js",
+    "server:build": "yarn workspace server build",
+    "server:dev": "yarn workspace server dev",
+    "server:start": "yarn workspace server start",
     "test": "jest --colors --coverage",
-    "start-all": "concurrently \"yarn server\" \"yarn start\""
+    "start-all": "concurrently \"yarn server:dev\" \"yarn start\""
   },
   "dependencies": {
     "@types/react": "18.2.79",

@@ -1,7 +1,6 @@
 import './setupEnv.js';
 import express from 'express';
 import fetch from 'node-fetch';
-import { PassThrough } from 'node:stream'
 import moment from 'moment'
 import chalk from 'chalk'
 import { readFile } from 'fs/promises';
@@ -11,22 +10,8 @@ import { PORT, source, apiUrl, accessKey, destination, ENDPOINT } from './config
 
 const app = express();
 app.disable('x-powered-by');
+app.use(express.json())
 app.use(cors())
-
-const processStream = (res, response) => {
-
-    const passThroughStream = new PassThrough();
-    response.body.pipe(passThroughStream);
-
-    passThroughStream.on('data', (chunk) => {
-        console.log('Received data chunk:', chunk.toString());
-        res.write(chunk);
-    });
-    passThroughStream.on('end', (data) => {
-        console.log('End of data:');
-        res.end();
-    });
-}
 
 app.get('/', (req, res) => {
     res.json({ message: 'Hola' });
@@ -41,23 +26,29 @@ app.get(`/rates`, async (req, res) => {
         });
         url.search = params.toString();
 
-        const headers = new Headers();
-        headers.append("apikey", accessKey);
-        headers.append('Content-Type', 'application/json');
-
         const response = await fetch(url.toString(), {
             method: 'GET',
-            headers,
+            headers: {
+                "apikey": accessKey,
+                "Content-Type": "application/json",
+            },
         })
-        processStream(res, response)
+
+        if (!response.ok) {
+            res.status(400).send({ message: 'An error happened'})
+        }
+
+        const data = await response.json();
+        res.json(data)
+
     } catch(e) {
         console.log(e)
         console.log(chalk.yellow('Currency Layer (http://currencylayer.com) server not reachable, defaulting to mock data rates'))
-        const json = JSON.parse(
-            await readFile(
-                new URL('./rates.json', import.meta.url)
-            )
-        );
+        
+        const jsonBuffer = await readFile(new URL('./rates.json', import.meta.url));
+        const jsonString = jsonBuffer.toString();
+        const json = JSON.parse(jsonString);
+
         res.setHeader('Content-Type', 'application/json')
         res.json({
             success: 'true',
