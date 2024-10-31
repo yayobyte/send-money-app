@@ -2,7 +2,7 @@ import ApiClient from './ApiClient'
 import { ConvertRequest, ConvertResult } from "./types/convert"
 import { RatesResult } from "./types/rates"
 
-const apiUrl = 'http://192.168.1.182'
+const apiUrl = 'http://192.168.1.6'
 const apiPort = 3001
 
 const ApiService = {
