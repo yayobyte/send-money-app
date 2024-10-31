@@ -1,4 +1,4 @@
-import './setupEnv.js';
+import 'dotenv/config';
 import express from 'express';
 import fetch from 'node-fetch';
 import moment from 'moment'
